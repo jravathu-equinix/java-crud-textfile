@@ -1,3 +1,5 @@
+// Java code to perform CRUD operations on a text file.
+
 import java.io.File;  
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.FileSystems;
 public class FileOperations{
 
-    // create a file
+    // CREATE a file
     static void CreateFile(String fname)
     {
         try {    
@@ -26,7 +28,7 @@ public class FileOperations{
         }
     }
 
-    // write text to a file
+    // WRITE text to a file
     static void WriteToFile(String fname)
     {
         try {  
@@ -40,7 +42,7 @@ public class FileOperations{
         }  
     }  
 
-    // read lines from a file
+    // READ lines from a file
     static void ReadFile(String fname)
     {
         try {   
@@ -57,7 +59,7 @@ public class FileOperations{
         } 
     }
 
-    // delete a file
+    // DELETE a file
     static void DeleteFile(String fname)
     {
         File f0 = new File(fname);   
@@ -68,14 +70,16 @@ public class FileOperations{
         } 
     }
 
-    // update a line in a file
+    // UPDATE a line in a file given index of line
     static void UpdateLineInFile(String fname, int lineNo, String updateText) throws IOException
     {
         try{
         
             try {
                 Path path = FileSystems.getDefault().getPath( fname);
+                // addling lines to the list
                 List<String> lines = Files.readAllLines(path,StandardCharsets.UTF_8);
+                // updating list acc to index given
                 lines.set(lineNo, updateText);    
                 StringBuilder str=new StringBuilder();
 
@@ -87,6 +91,7 @@ public class FileOperations{
           
                 try {  
                     FileWriter fwrite = new FileWriter(fname);   
+                    // updating file
                     fwrite.write(String.valueOf(str));   
                     fwrite.close();   
                     System.out.println("Content is successfully wrote to the file.");  
@@ -117,7 +122,7 @@ public class FileOperations{
         WriteToFile(fname);
         ReadFile(fname);
         try {
-            UpdateLineInFile(fname, 1, "tstasdasds");
+            UpdateLineInFile(fname, 1, "Updated Text");
         } catch (Exception e) {
             System.out.println("Unexpected error occurred");
         }
