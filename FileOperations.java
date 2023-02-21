@@ -15,6 +15,7 @@ public class FileOperations{
     static void CreateFile(String fname)
     {
         try {    
+            // file object
             File f0 = new File(fname);   
             if (f0.createNewFile()) {  
                 System.out.println("File " + f0.getName() + " is created successfully.");  
@@ -32,6 +33,7 @@ public class FileOperations{
     static void WriteToFile(String fname)
     {
         try {  
+            // to append text to existing text
             FileWriter fwrite = new FileWriter(fname,true);   
             fwrite.write("Sample text written in file\n");   
             fwrite.close();   
@@ -48,7 +50,9 @@ public class FileOperations{
         try {   
             File f1 = new File(fname);  
             Scanner dataReader = new Scanner(f1);  
+            // check if next line exists
             while (dataReader.hasNextLine()) {  
+                // store the line and print
                 String fileData = dataReader.nextLine();  
                 System.out.println(fileData);  
             }  
@@ -115,6 +119,7 @@ public class FileOperations{
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("enter a file name: ");
+        // file name input
         String fname = sc.nextLine();
         CreateFile(fname);
         WriteToFile(fname);
